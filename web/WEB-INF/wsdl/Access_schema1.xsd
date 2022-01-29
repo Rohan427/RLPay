@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://facade.payment.portal.rlpay.randomlogic.com/" xmlns:tns="http://facade.payment.portal.rlpay.randomlogic.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="deleteProfile" type="tns:deleteProfile"/>
+
+  <xs:element name="deleteProfileResponse" type="tns:deleteProfileResponse"/>
+
+  <xs:element name="getPortalSvc" type="tns:getPortalSvc"/>
+
+  <xs:element name="getPortalSvcResponse" type="tns:getPortalSvcResponse"/>
+
+  <xs:element name="log" type="tns:log"/>
+
+  <xs:element name="logResponse" type="tns:logResponse"/>
+
+  <xs:element name="login" type="tns:login"/>
+
+  <xs:element name="loginResponse" type="tns:loginResponse"/>
+
+  <xs:element name="manage" type="tns:manage"/>
+
+  <xs:element name="manageResponse" type="tns:manageResponse"/>
+
+  <xs:element name="payment" type="tns:payment"/>
+
+  <xs:element name="paymentResponse" type="tns:paymentResponse"/>
+
+  <xs:element name="register" type="tns:register"/>
+
+  <xs:element name="registerResponse" type="tns:registerResponse"/>
+
+  <xs:element name="report" type="tns:report"/>
+
+  <xs:element name="reportResponse" nillable="true" type="xs:anyType"/>
+
+  <xs:element name="setPortalSvc" type="tns:setPortalSvc"/>
+
+  <xs:element name="setPortalSvcResponse" type="tns:setPortalSvcResponse"/>
+
+  <xs:element name="test" type="tns:test"/>
+
+  <xs:element name="testResponse" type="tns:testResponse"/>
+
+  <xs:complexType name="log">
+    <xs:sequence>
+      <xs:element name="request" type="tns:logSearchRequest" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="logSearchRequest">
+    <xs:sequence>
+      <xs:element name="beginDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="client" type="tns:client" minOccurs="0"/>
+      <xs:element name="endDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="guid" type="xs:string" minOccurs="0"/>
+      <xs:element name="log" type="tns:logs" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="client">
+    <xs:sequence>
+      <xs:element name="authToken" type="xs:string" minOccurs="0"/>
+      <xs:element name="clientUID" type="xs:string" minOccurs="0"/>
+      <xs:element name="deviceId" type="xs:string" minOccurs="0"/>
+      <xs:element name="email" type="xs:string" minOccurs="0"/>
+      <xs:element name="password" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="logs">
+    <xs:sequence>
+      <xs:element name="amount" type="xs:string" minOccurs="0"/>
+      <xs:element name="authCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="batchId" type="xs:string" minOccurs="0"/>
+      <xs:element name="clientip" type="xs:string" minOccurs="0"/>
+      <xs:element name="command" type="xs:string" minOccurs="0"/>
+      <xs:element name="customerId" type="xs:string" minOccurs="0"/>
+      <xs:element name="errorCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="errorMsg" type="xs:string" minOccurs="0"/>
+      <xs:element name="errorSource" type="xs:string" minOccurs="0"/>
+      <xs:element name="errorType" type="xs:string" minOccurs="0"/>
+      <xs:element name="guid" type="xs:string" minOccurs="0"/>
+      <xs:element name="idLogs" type="xs:int"/>
+      <xs:element name="logDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="logText" type="xs:string" minOccurs="0"/>
+      <xs:element name="method" type="xs:string" minOccurs="0"/>
+      <xs:element name="transactionId" type="xs:string" minOccurs="0"/>
+      <xs:element name="users" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="logResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:logSearchResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="logSearchResponse">
+    <xs:sequence>
+      <xs:element name="client" type="tns:client" minOccurs="0"/>
+      <xs:element name="errorCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="errorMsg" type="xs:string" minOccurs="0"/>
+      <xs:element name="guid" type="xs:string" minOccurs="0"/>
+      <xs:element name="logList" type="tns:logs" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="test">
+    <xs:sequence>
+      <xs:element name="request" type="tns:clientRequest" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="clientRequest">
+    <xs:sequence>
+      <xs:element name="client" type="tns:client" minOccurs="0"/>
+      <xs:element name="custAccount" type="xs:string" minOccurs="0"/>
+      <xs:element name="description" type="xs:string" minOccurs="0"/>
+      <xs:element name="email" type="xs:string" minOccurs="0"/>
+      <xs:element name="guid" type="xs:string" minOccurs="0"/>
+      <xs:element name="hostedPageSettings">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="entry" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="key" minOccurs="0" type="xs:string"/>
+                  <xs:element name="value" minOccurs="0" type="xs:string"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="hostedUrl" type="xs:string" minOccurs="0"/>
+      <xs:element name="profileToken" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="testResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="setPortalSvc">
+    <xs:sequence>
+      <xs:element name="arg0" type="tns:portalImpl" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="portalImpl">
+    <xs:sequence>
+      <xs:element name="methods" type="tns:portalMethodImpl" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="portalMethodImpl">
+    <xs:sequence>
+      <xs:element name="environment" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="setPortalSvcResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="deleteProfile">
+    <xs:sequence>
+      <xs:element name="request" type="tns:clientRequest" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="deleteProfileResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:clientResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="clientResponse">
+    <xs:sequence>
+      <xs:element name="authCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="client" type="tns:client" minOccurs="0"/>
+      <xs:element name="custAccount" type="xs:string" minOccurs="0"/>
+      <xs:element name="email" type="xs:string" minOccurs="0"/>
+      <xs:element name="errorCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="errorMsg" type="xs:string" minOccurs="0"/>
+      <xs:element name="guid" type="xs:string" minOccurs="0"/>
+      <xs:element name="hostedToken" type="xs:string" minOccurs="0"/>
+      <xs:element name="hostedUrl" type="xs:string" minOccurs="0"/>
+      <xs:element name="profileToken" type="xs:string" minOccurs="0"/>
+      <xs:element name="transactionId" type="xs:string" minOccurs="0"/>
+      <xs:element name="userName" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="login">
+    <xs:sequence>
+      <xs:element name="request" type="tns:clientRequest" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="loginResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:clientResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getPortalSvc">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="getPortalSvcResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:portalImpl" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="register">
+    <xs:sequence>
+      <xs:element name="request" type="tns:clientRequest" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="registerResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:clientResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="manage">
+    <xs:sequence>
+      <xs:element name="request" type="tns:clientRequest" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="manageResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:clientResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="report">
+    <xs:sequence>
+      <xs:element name="request" type="tns:reportRequest" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reportRequest">
+    <xs:sequence>
+      <xs:element name="batchId" type="xs:string" minOccurs="0"/>
+      <xs:element name="beginDate" type="xs:string" minOccurs="0"/>
+      <xs:element name="client" type="tns:client" minOccurs="0"/>
+      <xs:element name="command" type="xs:string" minOccurs="0"/>
+      <xs:element name="customerId" type="xs:string" minOccurs="0"/>
+      <xs:element name="descending" type="xs:boolean"/>
+      <xs:element name="endDate" type="xs:string" minOccurs="0"/>
+      <xs:element name="guid" type="xs:string" minOccurs="0"/>
+      <xs:element name="limit" type="xs:int"/>
+      <xs:element name="offset" type="xs:int"/>
+      <xs:element name="orderBy" type="xs:string" minOccurs="0"/>
+      <xs:element name="profileIdList" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="transactionId" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reportResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:ReportResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ReportResponse">
+    <xs:sequence>
+      <xs:element name="client" type="tns:client" minOccurs="0"/>
+      <xs:element name="errorCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="errorMessage" type="xs:string" minOccurs="0"/>
+      <xs:element name="guid" type="xs:string" minOccurs="0"/>
+      <xs:any processContents="skip" namespace="##other"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="payment">
+    <xs:sequence>
+      <xs:element name="request" type="tns:paymentRequest" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="paymentRequest">
+    <xs:sequence>
+      <xs:element name="account" type="tns:accountData" minOccurs="0"/>
+      <xs:element name="clientData" type="tns:clientRequest" minOccurs="0"/>
+      <xs:element name="paymentNonce" type="tns:apiNonce" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="accountData">
+    <xs:sequence>
+      <xs:element name="accountNo" type="xs:string" minOccurs="0"/>
+      <xs:element name="amount" type="xs:string" minOccurs="0"/>
+      <xs:element name="items" type="tns:lineItem" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="statementNo" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="lineItem">
+    <xs:sequence>
+      <xs:element name="customerPo" type="xs:string" minOccurs="0"/>
+      <xs:element name="description" type="xs:string" minOccurs="0"/>
+      <xs:element name="dueDate" type="tns:date" minOccurs="0"/>
+      <xs:element name="invoiceDate" type="tns:date" minOccurs="0"/>
+      <xs:element name="itemNo" type="xs:string" minOccurs="0"/>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+      <xs:element name="openAmount" type="xs:string" minOccurs="0"/>
+      <xs:element name="orderNo" type="xs:string" minOccurs="0"/>
+      <xs:element name="originalAmount" type="xs:string" minOccurs="0"/>
+      <xs:element name="qty" type="xs:int"/>
+      <xs:element name="taxable" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="date">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="apiNonce">
+    <xs:sequence>
+      <xs:element name="description" type="xs:string" minOccurs="0"/>
+      <xs:element name="key" type="xs:string" minOccurs="0"/>
+      <xs:element name="nonce" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="paymentResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:clientResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+

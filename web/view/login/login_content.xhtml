@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<!--      xmlns:p="http://primefaces.org/ui"
+-->
+    <ui:composition>
+        <div class="div_header">
+            <p id="top">
+                <h1>RLPay API<br />
+                    Login</h1>
+            </p>
+        </div>
+
+        <div class="res_div_main">
+            <div style="width: 350px">
+                <h:form>
+                    <fieldset>
+                        <legend>
+                            <h1>LOGIN</h1>
+                        </legend>
+                        <p class="form1">
+                            UID (Login)<h:inputText class="frightc"
+                                                    value="#{loginBean.loginId}"
+                                                    required="true"
+                                                    title="UID, required"
+                                                    requiredMessage="You must enter a login ID"
+                                                    size="25"
+                                       />
+                        </p>
+
+                        <p class="form2">
+                            Password<h:inputSecret class="frightc"
+                                                   value="#{loginBean.password}"
+                                                   required="true"
+                                                   title="password, required"
+                                                   requiredMessage="You must enter your password"
+                                                   size="25"
+                                    />
+                        </p>
+
+                        <p>
+                            <h:commandButton value="Login" action="#{loginBean.login}" />
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="reset"
+                                   value="Reset"
+                                   name="Reset"
+                            />
+                        </p>
+                    </fieldset>
+                </h:form>
+                    <p>
+                        <a href="Authenticate?mode=emailpw">Forgot password or UID?</a>
+                    </p>
+            </div>
+        </div>
+
+<!-- ++++++++++++++++++++++ End Page Content ++++++++++++++++++++++++ -->
+
+    </ui:composition>
+</html>

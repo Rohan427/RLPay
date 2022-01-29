@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<!--      xmlns:p="http://primefaces.org/ui"
+-->
+    <ui:composition>
+        <div class="div_header">
+            <p id="top">
+                <h1>Transaction Details</h1>
+            </p>
+        </div>
+
+        <div class="res_div_main">
+            <div style="width: 350px">
+                <h:form>
+                    <p class="form1">
+                        Transaction ID<h:inputText class="frightc"
+                                                   value="#{reportBean.transId}"
+                                                   required="true"
+                                                   requiredMessage="You must enter a transaction ID"
+                                                   title="Transaction ID, required"
+                                                   size="25"
+                                      />
+                    </p>
+
+                    <p>
+                        <h:commandButton value="Search" action="#{reportBean.details}" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="reset"
+                               value="Reset"
+                               name="Reset"
+                        />
+                    </p>
+                </h:form>
+            </div>
+
+            <div>
+                <table class="price"  cellspacing="1">
+                    <tbody>
+                        <tr>
+                            <td colspan="9" class="features">
+                                <h2 id="dcc_payment_result">Log Entries</h2>
+                            </td>
+                        </tr>
+                        <tr class="heading">
+                            <td>
+                                <b>Authorized Amount</b>
+                            </td>
+                            <td>
+                                <b>First Name</b>
+                            </td>
+                            <td>
+                                <b>Last Name</b>
+                            </td>
+                            <td>
+                                <b>Customer ID</b>
+                            </td>
+                            <td>
+                                <b>Auth Code</b>
+                            </td>
+                            <td>
+                                <b>Time Submitted (UTC)</b>
+                            </td>
+                            <td>
+                                <b>Response Code</b>
+                            </td>
+                            <td>
+                                <b>Response Description</b>
+                            </td>
+                        </tr>
+
+                        <ui:fragment rendered="#{!empty reportBean.transaction}">
+                        <tr>
+                            <td>
+                                #{reportBean.transaction.authAmount}
+                            </td>
+                            <td>
+                                #{reportBean.transaction.firstName}
+                            </td>
+                            <td>
+                                #{reportBean.transaction.lastName}
+                            </td>
+                            <td>
+                                #{reportBean.transaction.customerId}
+                            </td>
+                            <td>
+                                #{reportBean.transaction.authCode}
+                            </td>
+                            <td>
+                                #{reportBean.transaction.submitTime}
+                            </td>
+                            <td>
+                                #{reportBean.transaction.responseCode}
+                            </td>
+                            <td>
+                                #{reportBean.transaction.responseDesc}
+                            </td>
+                        </tr>
+                        </ui:fragment>
+
+                        <ui:fragment rendered="#{empty reportBean.transaction}">
+                        <tr>
+                            <td colspan="9">
+                                <b>No Matching Transaction entries found</b>
+                            </td>
+                        </tr>
+                        </ui:fragment>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+<!-- ++++++++++++++++++++++ End Page Content ++++++++++++++++++++++++ -->
+
+    </ui:composition>
+</html>

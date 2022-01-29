@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<!--      xmlns:p="http://primefaces.org/ui"
+-->
+    <ui:composition>
+
+<!-- ++++++++++++++++++++++ Statement Form +++++++++++++++++++++ -->
+
+    <script src="../js/jquery-2.1.4.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <script src="../js/acceptJSCaller.js"></script>
+
+    <ui:define name="script">
+<script type="text/javascript">
+    <![CDATA[
+    var timeout = 50; // 5 seconds timeout
+    var poll;
+
+    setPortalMode (#{cfgBean.mode});
+
+    $(document).ready
+    (
+        function()
+        {
+            document.getElementById ("acceptUIPayButton").style.display = 'none';
+
+            poll = function()
+            {
+                setTimeout
+                (
+                    function()
+                    {
+                        timeout--;
+
+                        if (typeof acceptLoaded !== 'undefined')
+                        {
+                            amount = document.getElementById ("total_outstanding").value;
+                            amount = amount.replace ("$", "");
+                            amount = amount.replace (",", "");
+                            amount = Number (amount);
+
+                            if (amount <= 0)
+                            {
+                              console.log ("button hid");
+                            }
+                            else
+                            {
+                              document.getElementById ("acceptUIPayButton").style.display = 'block';
+                              console.log ('button show');
+                            }
+                        }
+                        else if (timeout > 0)
+                        {
+                            poll();
+                        }
+                        else
+                        {
+                            alertClass = document.createAttribute ("class");
+                            alertClass.value = "alert-msg";
+                            document.getElementById ('payment_result').setAttributeNode(alertClass);
+                            document.getElementById ('payment_result').innerHTML = "The Remote Payment Processor is not available at this time.  We apologize for the inconvenience, Please try again later.";
+                            document.getElementById ("acceptUIPayButton").style.display = 'none';
+
+                            console.log ('script NOT loaded');
+                        }
+                    },
+                    100
+                ); // setTimeout
+            }; // poll = function()
+
+            poll();
+        } // function()
+    ); // $(document).ready
+    ]]>
+</script>
+    </ui:define>
+
+        <div class="res_div_header">
+            <h1>Account <h:outputText value="#{userBean.accountNum}" /></h1>
+        </div>
+        <div class="res_div_main">
+    <ui:fragment rendered="#{userBean.profileToken ne '0'}" >
+            <div style="width: 1000px">
+                <form action="Payment" method="post">
+                    <div>
+                        <table class="price"  cellspacing="1">
+                            <tbody>
+                                <tr>
+                                    <td colspan="9" class="features">
+                                        <h2 id="payment_result">Statement</h2>
+                                    </td>
+                                </tr>
+                                <tr class="heading">
+                                    <td>
+                                        <h3>Customer PO</h3>
+                                    </td>
+                                    <td>
+                                        <h3>Order Number</h3>
+                                    </td>
+                                    <td>
+                                        <h3>Invoice Number</h3>
+                                    </td>
+                                    <td>
+                                        <h3>Description</h3>
+                                    </td>
+                                    <td>
+                                        <h3>Invoice Date</h3>
+                                    </td>
+                                    <td>
+                                        <h3>Due Date</h3>
+                                    </td>
+                                    <td>
+                                        <h3>Original Amount</h3>
+                                    </td>
+                                    <td>
+                                        <h3>Open Amount</h3>
+                                    </td>
+                                    <td>
+                                        <h3>Pay</h3>
+                                    </td>
+                                </tr>
+                                <tr class="invoice1">
+                                    <td style="text-align: left">
+                                        2987-485-10
+                                    </td>
+                                    <td style="text-align: right">
+                                        7890236
+                                    </td>
+                                    <td style="text-align: right">
+                                        4590872
+                                    </td>
+                                    <td style="text-align: left">
+                                        Invoice
+                                    </td>
+                                    <td style="text-align: center">
+                                        10/25/2018
+                                    </td>
+                                    <td style="text-align: center">
+                                        10/25/2019
+                                    </td>
+                                    <td style="text-align: right;">
+                                        7,590.20
+                                    </td>
+                                    <td style="text-align: right;">
+                                        7,590.20
+                                    </td>
+                                    <td style="text-align: center">
+                                        <input type="checkbox" name="payment" value="4590872" checked="checked" />
+                                    </td>
+                                </tr>
+                                <tr class="invoice2">
+                                    <td style="text-align: left">
+
+                                    </td>
+                                    <td style="text-align: right">
+
+                                    </td>
+                                    <td style="text-align: right">
+                                        4590873
+                                    </td>
+                                    <td style="text-align: left">
+                                        Finance Fee
+                                    </td>
+                                    <td style="text-align: center">
+                                        11/25/2018
+                                    </td>
+                                    <td style="text-align: center">
+                                        11/25/2019
+                                    </td>
+                                    <td style="text-align: right; width: 11">
+                                        50.00
+                                    </td>
+                                    <td style="text-align: right; width: 11">
+                                        50.00
+                                    </td>
+                                    <td style="text-align: center">
+                                        <input type="checkbox" name="payment" value="4590873" checked="checked" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p>
+                            <input id="total_outstanding" type="hidden" name="amount" value="4785.73" />
+                            <input id="accountnumber" type="hidden" name="account" value="1019511" />
+                            <input id="description" type="hidden" name="description" value="Specific Amount" />
+                            <input id="refid" type="hidden" name="refid" value="testId-20Char" />
+                            <input id="email" type="hidden" name="email" value="pgallen@gmail.com" />
+                            Amount:&nbsp; <input id="amount_to_pay" type="text" name="amount_to_pay" />
+
+                            <input id="qty" type="hidden" name="qty" value="1" />
+
+                            <input type="hidden" name="command" value="payment" />
+                            <input id="portalMode" type="hidden" name="portalMode" value="#{cfgBean.mode}" />
+                        </p>
+
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td id="btnParent" style="text-align: right;">
+                                        <button class = "AcceptUI"
+                                                style = "font-weight: bolder; font-size: 24px; margin-top: 10px; margin-bottom: 10px"
+                                                type = "button"
+                                                id = "acceptUIPayButton"
+                                                data-billingAddressOptions = '{"show":"true", "required":"true"}'
+                                                data-apiLoginID = "#{cfgBean.apiLoginId}"
+                                                data-clientKey = "#{cfgBean.clientKey}"
+                                                data-acceptUIFormBtnTxt = "Pay"
+                                                data-acceptUIFormHeaderTxt = "Payment Information"
+                                                data-responseHandler = "paymentHandler"
+                                        >
+                                            Pay
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+    </ui:fragment>
+    <ui:fragment rendered="#{userBean.profileToken eq '0'}" >
+            <div style="width: 500px">
+                <p>
+                    User <h:outputText value="#{userBean.userName}" /> not logged in!
+                </p>
+            </div>
+    </ui:fragment>
+        </div>
+
+    <ui:fragment rendered="${cfgBean.mode eq 'test'}" >
+<!-- TEST -->
+<script type="text/javascript"
+    src="https://jstest.authorize.net/v3/AcceptUI.js"
+    charset="utf-8">
+</script>
+    </ui:fragment>
+
+    <ui:fragment rendered="#{cfgBean.mode eq 'dev'}" >
+<!-- DEV -->
+<script type="text/javascript"
+    src="https://jstest.authorize.net/v3/AcceptUI.js"
+    charset="utf-8">
+</script>
+    </ui:fragment>
+
+    <ui:fragment rendered="#{cfgBean.mode eq 'prod'}" >
+<!-- PRODUCTION -->
+<script type="text/javascript"
+    src="https://js.authorize.net/v3/AcceptUI.js"
+    charset="utf-8">
+</script>
+    </ui:fragment>
+
+<!-- ++++++++++++++++++++++ End Page Content ++++++++++++++++++++++++ -->
+
+    </ui:composition>
+</html>

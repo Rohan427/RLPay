@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<weblogic-web-app xmlns="http://xmlns.oracle.com/weblogic/weblogic-web-app"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                                      http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd
+                                      http://xmlns.oracle.com/weblogic/weblogic-web-app
+                                      http://xmlns.oracle.com/weblogic/weblogic-web-app/1.8/weblogic-web-app.xsd"
+>
+    <jsp-descriptor>
+        <keepgenerated>true</keepgenerated>
+        <debug>true</debug>
+    </jsp-descriptor>
+    <session-descriptor>
+        <timeout-secs>3600</timeout-secs>
+        <invalidate-on-relogin>true</invalidate-on-relogin>
+        <debug-enabled>true</debug-enabled>
+        <id-length>52</id-length>
+        <tracking-enabled>true</tracking-enabled>
+        <cookie-name>portalapi</cookie-name>
+    </session-descriptor>
+    <context-root>/RLPAY</context-root>
+</weblogic-web-app>

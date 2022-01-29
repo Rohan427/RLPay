@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 7, 2019 10:43:40 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="devcred" name="com.randomlogic.rlpay.model.domain.company.entity.Authorization" optimistic-lock="version" table="authorization">
+    <composite-id class="com.randomlogic.rlpay.model.domain.company.entity.AuthorizationId" name="id">
+      <key-property name="idAuthorization" type="int">
+        <column name="idAuthorization"/>
+      </key-property>
+      <key-property name="method" type="string">
+        <column name="method"/>
+      </key-property>
+    </composite-id>
+    <property name="valid" type="byte">
+      <column name="valid" not-null="true"/>
+    </property>
+    <!-- set name="users" table="user_has_authorization" inverse="false" lazy="true" fetch="select">
+                <key>
+                    <column name="Authorization_idAuthorization" not-null="true" />
+                    <column name="Authorization_method" not-null="true" />
+                </key>
+                <many-to-many entity-name="model.domain.user.User">
+                    <column name="User_idUser" not-null="true" />
+                </many-to-many>
+            </set -->
+  </class>
+</hibernate-mapping>

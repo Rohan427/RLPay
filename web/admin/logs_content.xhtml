@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<!--      xmlns:p="http://primefaces.org/ui"
+-->
+    <ui:composition>
+
+        <div class="div_header">
+            <p id="top">
+                <h1>Transaction Logs</h1>
+            </p>
+        </div>
+
+        <div class="res_div_main">
+            <div style="width: 350px">
+                <h:form>
+                <form action="LogManager" method="post">
+                    <p class="form1">
+                        Transaction ID<h:inputText class="frightc"
+                                                   value="#{logsBean.transId}"
+                                                   title="Transaction ID, optional"
+                                                   size="25"
+                                      />
+                    </p>
+                    <p class="form2">
+                        Customer Account<h:inputText class="frightc"
+                                                     value="#{logsBean.accountNo}"
+                                                     title="Account number, optional"
+                                                     size="25"
+                                        />
+                    </p>
+                    <p class="form1">
+                        Begin Date<h:inputText class="frightc"
+                                               value="#{logsBean.beginDate}"
+                                               title="Beginning date for search, optional"
+                                               size="25"
+                                  >
+                                        <f:convertDateTime pattern = "yyyy-MM-dd HH:mm" />
+                                  </h:inputText>
+                    </p>
+                    <p class="form2">
+                        End Date<h:inputText class="frightc"
+                                             value="#{logsBean.endDate}"
+                                             title="Ending date for search, optional"
+                                             size="25"
+                                >
+                                   <f:convertDateTime pattern = "yyyy-MM-dd HH:mm" />
+                                </h:inputText>
+                    </p>
+                    <p class="form1">
+                        Error Code<h:inputText class="frightc"
+                                               value="#{logsBean.errorCode}"
+                                               title="Error Code, optional"
+                                               size="25"
+                                  />
+                    </p>
+
+                    <p>
+                        <h:commandButton value="Search" action="#{logsBean.search}" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="reset"
+                               value="Reset"
+                               name="Reset" />
+                    </p>
+
+                    <input type="hidden" name="mode" value="search" />
+
+                </form>
+                </h:form>
+            </div>
+
+            <div>
+                <table class="price"  cellspacing="1">
+                    <tbody>
+                        <tr>
+                            <td colspan="9" class="features">
+                                <h2 id="dcc_payment_result">Log Entries</h2>
+                            </td>
+                        </tr>
+                        <tr class="heading">
+                            <td>
+                                <b>Date</b>
+                            </td>
+                            <td>
+                                <b>Transaction</b>
+                            </td>
+                            <td>
+                                <b>Account</b>
+                            </td>
+                            <td>
+                                <b>Amount</b>
+                            </td>
+                            <td>
+                                <b>Error Code</b>
+                            </td>
+                            <td>
+                                <b>Error Message</b>
+                            </td>
+                            <td>
+                                <b>Error Type</b>
+                            </td>
+                            <td>
+                                <b>Log Message</b>
+                            </td>
+                        </tr>
+
+                    <ui:fragment rendered="#{not empty logList}" >
+                        <ui:repeat value="#{logList}" var="logSet" >
+                        <tr>
+                            <td>
+                                <h:outputText value="#{logSet.logDate}" />
+                            </td>
+                            <td>
+                                <h:outputText value="#{logSet.transactionId}" />
+                            </td>
+                            <td>
+                                <h:outputText value="#{logSet.customerId}" />
+                            </td>
+                            <td>
+                                <h:outputText value="#{logSet.amount}" />
+                            </td>
+                            <td>
+                                <h:outputText value="#{logSet.errorCode}" />
+                            </td>
+                            <td>
+                                <h:outputText value="#{logSet.errorMsg}" />
+                            </td>
+                            <td>
+                                <h:outputText value="#{logSet.errorType}" />
+                            </td>
+                            <td>
+                                <h:outputText value="#{logSet.logText}" />
+                            </td>
+                        </tr>
+                        </ui:repeat>
+                    </ui:fragment>
+                    <ui:fragment rendered="#{empty logList}" >
+                        <tr>
+                            <td colspan="9">
+                                <b>No Matching Logs entries found</b>
+                            </td>
+                        </tr>
+                    </ui:fragment>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+<!-- ++++++++++++++++++++++ End Page Content ++++++++++++++++++++++++ -->
+
+    </ui:composition>
+</html>

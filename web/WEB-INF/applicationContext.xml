@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context-4.0.xsd"
+
+>
+    <context:component-scan base-package="com.randomlogic.rlpay.application.config" />
+    <context:component-scan base-package="com.randomlogic.rlpay.view.controller" />
+    <context:component-scan base-package="com.randomlogic.rlpay.portal" />
+    <context:component-scan base-package="com.randomlogic.rlpay.business.payment.gateway" />
+    <context:component-scan base-package="com.randomlogic.rlpay.portal.payment.service.impl" />
+    <context:component-scan base-package="com.randomlogic.rlpay.model.domain.company.service.impl" />
+    <context:component-scan base-package="com.randomlogic.rlpay.resources.api.azure.facade" />
+    <context:component-scan base-package="com.randomlogic.rlpay.resources.api.azure.model.service.impl" />
+    <context:component-scan base-package="com.randomlogic.rlpay.model.service.impl" />
+    <!-- bean id="reportController" class="controller.ReportController" />
+    <bean id="sandbox" class="portal.Sandbox" />
+    <bean id="reportBean" class="controller.ReportBean" / -->
+</beans>
