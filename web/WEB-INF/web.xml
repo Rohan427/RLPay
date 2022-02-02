@@ -92,10 +92,10 @@
     </welcome-file-list>
     <!-- resource-ref>
         <description>Oracle Weblogic MySQL JDBC Data Source</description>
-        <res-ref-name>jdbc/dccapi</res-ref-name>
+        <res-ref-name>jdbc/rlapi</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
         <res-auth>Container</res-auth>
-        <mapped-name>jdbc/dccapi</mapped-name>
+        <mapped-name>jdbc/rlapi</mapped-name>
     </resource-ref>
     <security-constraint>
         <display-name>Methods</display-name>

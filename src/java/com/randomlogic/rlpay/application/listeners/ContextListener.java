@@ -111,7 +111,7 @@ public class ContextListener implements ServletContextAttributeListener, Servlet
         }
         else
         {
-            Logger.log (0, ContextListener.class, exception, message);
+            Logger.log (Logger.EXCEPTION, ContextListener.class, exception, message);
         }
     }
 }

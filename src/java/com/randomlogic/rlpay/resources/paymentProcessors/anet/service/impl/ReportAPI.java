@@ -266,7 +266,7 @@ public class ReportAPI
         log.setErrorMsg (report.getErrorMessage());
         log.setLogText (report.getDescription());
 
-        Logger.log (0, this.getClass(), log, true);
+        Logger.log (Logger.ERROR, this.getClass(), log, true);
 
         return report;
     }

@@ -118,7 +118,7 @@ public class LogsAccessSvcImpl extends HibernateDAOSvc implements ILogsAccessSvc
             catch (Exception e)
             {
                 logs = null;
-                Logger.log (0, LogsAccessSvcImpl.class, e);
+                Logger.log (Logger.EXCEPTION, LogsAccessSvcImpl.class, e);
             }
         }
         else
@@ -166,7 +166,7 @@ public class LogsAccessSvcImpl extends HibernateDAOSvc implements ILogsAccessSvc
                     {
                         try
                         {
-                            Logger.log (0, LogsAccessSvcImpl.class, e);
+                            Logger.log (Logger.EXCEPTION, LogsAccessSvcImpl.class, e);
                             transaction.rollback();
                         }
                         catch (Exception ex)
@@ -233,7 +233,7 @@ public class LogsAccessSvcImpl extends HibernateDAOSvc implements ILogsAccessSvc
                     {
                         try
                         {
-                            Logger.log (0, LogsAccessSvcImpl.class, e);
+                            Logger.log (Logger.EXCEPTION, LogsAccessSvcImpl.class, e);
                             transaction.rollback();
                         }
                         catch (Exception ex)
@@ -299,7 +299,7 @@ public class LogsAccessSvcImpl extends HibernateDAOSvc implements ILogsAccessSvc
             }
             catch (Exception e)
             {
-                Logger.log (0, LogsAccessSvcImpl.class, e);
+                Logger.log (Logger.EXCEPTION, LogsAccessSvcImpl.class, e);
             }
         }
         else
@@ -367,7 +367,7 @@ public class LogsAccessSvcImpl extends HibernateDAOSvc implements ILogsAccessSvc
                 }
                 catch (Exception e)
                 {
-                    Logger.log (0, APIUserAccessSvcImpl.class, e);
+                    Logger.log (Logger.EXCEPTION, APIUserAccessSvcImpl.class, e);
                     result = false;
                 }
             }
@@ -486,7 +486,7 @@ public class LogsAccessSvcImpl extends HibernateDAOSvc implements ILogsAccessSvc
             catch (Exception e)
             {
                 logList = new ArrayList<Logs>();
-                Logger.log (0, LogsAccessSvcImpl.class, e);
+                Logger.log (Logger.EXCEPTION, LogsAccessSvcImpl.class, e);
             }
         }
         else

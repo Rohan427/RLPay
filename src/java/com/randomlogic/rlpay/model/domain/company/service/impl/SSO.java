@@ -85,7 +85,7 @@ public class SSO implements ISSO, Serializable
         }
         catch (NullPointerException e)
         {
-            Logger.log (0, SSO.class, e, ".SSO: Null " + message);
+            Logger.log (Logger.EXCEPTION, SSO.class, e, ".SSO: Null " + message);
         }
         finally
         {

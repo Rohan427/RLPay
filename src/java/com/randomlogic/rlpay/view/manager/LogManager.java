@@ -183,7 +183,7 @@ public class LogManager extends HttpServlet
         }
         catch (ServletException | IOException ex)
         {
-            Logger.log (0, LogManager.class, ex, "LogManager: Exception.\n");
+            Logger.log (Logger.EXCEPTION, LogManager.class, ex, "LogManager: Exception.\n");
 
             if (params.getError() != null)
             {

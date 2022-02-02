@@ -225,7 +225,7 @@ public class PaymentAPI
         log.setLogText (transaction.getResponse().getDescription());
         log.setGuid (transaction.getRequest().getCustomer().getRefId());
 
-        Logger.log (0, this.getClass(), log, true);
+        Logger.log (Logger.ERROR, this.getClass(), log, true);
 
         return transaction;
     }

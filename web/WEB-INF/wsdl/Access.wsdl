@@ -203,7 +203,7 @@
   </binding>
   <service name="Access">
     <port name="AccessImplPort" binding="tns:AccessImplPortBinding">
-      <soap:address location="REPLACE_WITH_ACTUAL_URL"/>
+      <soap:address location="https://randomlogic.net:8102/RLPAY/Access"/>
     </port>
   </service>
 </definitions>

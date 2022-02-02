@@ -222,7 +222,7 @@
   </binding>
   <service name="Sandbox">
     <port name="SandboxImplPort" binding="tns:SandboxImplPortBinding">
-      <soap:address location="REPLACE_WITH_ACTUAL_URL"/>
+      <soap:address location="https://randomlogic.net:8102/RLPAY/Sandbox"/>
     </port>
   </service>
 </definitions>

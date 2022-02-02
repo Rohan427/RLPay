@@ -44,6 +44,7 @@ import org.json.JSONObject;
  */
 public class JSONHelper
 {
+    // TODO: Replace with RL Logger class
     private static Logger logger = Logger.getLogger (JSONHelper.class);
 
     JSONHelper()

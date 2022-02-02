@@ -120,8 +120,8 @@ public class Records implements IRecords, Serializable
     @Override
     public IClient verify (IClient client, ServletParams params)
     {
-        IAuthenticationSvc dccSvc = new AuthenticationSvcImpl();
-        client = dccSvc.verify ((Client)client, params);
+        IAuthenticationSvc rlpaySvc = new AuthenticationSvcImpl();
+        client = rlpaySvc.verify ((Client)client, params);
 
          return client;
     }

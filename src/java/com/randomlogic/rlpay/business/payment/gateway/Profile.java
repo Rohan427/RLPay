@@ -88,11 +88,11 @@ public class Profile implements IProfile, Serializable
     public IClient login (String password, String UID, String deviceId)
     {
         IClient client = new Client();
-        IAuthenticationSvc dccSvc = new AuthenticationSvcImpl();
+        IAuthenticationSvc rlpaySvc = new AuthenticationSvcImpl();
 
         client.setClientUID (UID);
         client.setDeviceId (deviceId);
-        client = dccSvc.login ((Client)client, password);
+        client = rlpaySvc.login ((Client)client, password);
 
         return client;
     }
@@ -137,8 +137,8 @@ public class Profile implements IProfile, Serializable
     @Override
     public IClient verify (IClient client, ServletParams params)
     {
-        IAuthenticationSvc dccSvc = new AuthenticationSvcImpl();
-        client = dccSvc.verify ((Client)client, params);
+        IAuthenticationSvc rlpaySvc = new AuthenticationSvcImpl();
+        client = rlpaySvc.verify ((Client)client, params);
         return client;
     }
 

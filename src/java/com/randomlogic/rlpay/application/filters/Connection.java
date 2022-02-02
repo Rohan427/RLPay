@@ -65,7 +65,7 @@ public class Connection implements Filter
                              Calendar.getInstance().getTime()
                             );
 
-        Logger.log (0, Connection.class, log, false);
+        Logger.log (Logger.VERBOSE, Connection.class, log, false);
     }
 
     private void doAfterProcessing (ServletRequest request, ServletResponse response)
@@ -125,7 +125,7 @@ public class Connection implements Filter
                                  Calendar.getInstance().getTime()
                                 );
 
-            Logger.log (0, Connection.class, log, false);
+            Logger.log (Logger.VERBOSE, Connection.class, log, false);
 
             doBeforeProcessing (request, response);
             wrappedResp = new RespWrapper ((HttpServletResponse)response);
@@ -294,7 +294,7 @@ public class Connection implements Filter
     {
         String stackTrace = getStackTrace (t);
         String logTrace;
-        Logs log = new Logs (0,
+        Logs log = new Logs (Logger.VERBOSE,
                              1,
                              "0.0.0.0",
                              "0",
@@ -321,7 +321,7 @@ public class Connection implements Filter
         if (stackTrace != null && !stackTrace.equals (""))
         {
             log.setLogText (logTrace);
-            Logger.log (0, Connection.class, log, true);
+            Logger.log (Logger.ERROR, Connection.class, log, true);
 
             try
             {
@@ -332,7 +332,7 @@ public class Connection implements Filter
                 pw.print ("<?xml version='1.0' encoding='UTF-8'?>" +
                           "<S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\">" +
                               "<S:Body>" +
-                                    "<ns0:paymentResponse xmlns:ns0=\"http://facade.payment.portal.dccapi.org/\">" +
+                                    "<ns0:paymentResponse xmlns:ns0=\"http://facade.payment.portal.rlpay.randomlogic.com/\">" +
                                       "<return>" +
                                           "<authCode>none</authCode>" +
                                               "<custAccount>0</custAccount>" +
@@ -366,7 +366,7 @@ public class Connection implements Filter
                 }
 
                 log.setLogText (logTrace);
-                Logger.log (0, Connection.class, log, true);
+                Logger.log (Logger.ERROR, Connection.class, log, true);
             }
         }
         else
@@ -374,7 +374,7 @@ public class Connection implements Filter
             log.setErrorCode ("" + API_SERVER_OUT_ERROR);
             log.setErrorMsg (API_RESOURCE_ERROR);
             log.setLogText (t.getLocalizedMessage());
-            Logger.log (0, Connection.class, log, true);
+            Logger.log (Logger.ERROR, Connection.class, log, true);
 
             try
             {

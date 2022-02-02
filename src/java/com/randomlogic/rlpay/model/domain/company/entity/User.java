@@ -214,7 +214,7 @@ public class User implements IAPIUser, Serializable
     }
 
 ////    @ManyToMany(fetch=FetchType.EAGER)
-////    @JoinTable(name="user_has_authorization", catalog="dccapi", joinColumns = {
+////    @JoinTable(name="user_has_authorization", catalog="rlpay", joinColumns = {
 ////        @JoinColumn(name="User_idUser", nullable=false, updatable=false),
 ////        @JoinColumn(name="User_uid", nullable=false, updatable=false),
 ////        @JoinColumn(name="User_deviceid", nullable=false, updatable=false) }, inverseJoinColumns = {

@@ -202,7 +202,7 @@ public class SessionListener implements ServletContextListener,
         }
         else
         {
-            Logger.log (0, SessionListener.class, exception, message);
+            Logger.log (Logger.EXCEPTION, SessionListener.class, exception, message);
         }
     }
 }

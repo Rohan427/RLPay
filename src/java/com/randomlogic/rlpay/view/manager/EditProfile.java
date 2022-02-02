@@ -145,7 +145,7 @@ public class EditProfile extends HttpServlet
         }
         catch (ServletException | IOException ex)
         {
-            Logger.log (0, EditProfile.class, ex, "EditProfile: Exception.\n\n");
+            Logger.log (Logger.EXCEPTION, EditProfile.class, ex, "EditProfile: Exception.\n\n");
 
             if (params.getError() != null)
             {

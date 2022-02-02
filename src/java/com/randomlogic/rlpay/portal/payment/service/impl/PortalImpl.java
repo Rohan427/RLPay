@@ -873,7 +873,7 @@ public class PortalImpl
                 log.setErrorType (TRANS_REQUEST);
                 log.setLogText (TRANS_AMT_INVALID);
 
-                Logger.log (0, PortalImpl.class, log, true);
+                Logger.log (Logger.EXCEPTION, PortalImpl.class, log, true);
             }
         }
         else

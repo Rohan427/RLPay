@@ -59,7 +59,7 @@ public class AuthenticationSvcImpl implements IAuthenticationSvc
     @Override
     public IClient login (IClient client, String password)
     {
-        User dccUser = new User();
+        User rlpayUser = new User();
 
         // Client not authorized by default
         client.setAuthToken ("0");
@@ -70,21 +70,21 @@ public class AuthenticationSvcImpl implements IAuthenticationSvc
             password != null
            )
         {
-            dccUser.getId().setDeviceid (client.getDeviceId());
-            dccUser.getId().setIdUser (0);
-            dccUser.getId().setUid (client.getClientUID());
+            rlpayUser.getId().setDeviceid (client.getDeviceId());
+            rlpayUser.getId().setIdUser (0);
+            rlpayUser.getId().setUid (client.getClientUID());
 
-            dccUser = (User) apiUserSvc.find (dccUser);
+            rlpayUser = (User) apiUserSvc.find (rlpayUser);
 
-            if (dccUser != null)
+            if (rlpayUser != null)
             {
                 //TODO: Implement encryption
-                if (password.equals (dccUser.getPassword()))
+                if (password.equals (rlpayUser.getPassword()))
                 {
-                    if (dccUser.getValid () > 0)
+                    if (rlpayUser.getValid () > 0)
                     {
                         User glbUser = new User();
-                        glbUser.getId().setIdUser (dccUser.getId().getIdUser());
+                        glbUser.getId().setIdUser (rlpayUser.getId().getIdUser());
                         Logger.setUser (glbUser);
                         client.setAuthToken (Util.getGUID());
                     }
@@ -103,18 +103,18 @@ public class AuthenticationSvcImpl implements IAuthenticationSvc
                 client.setAuthToken ("0");
             }
 
-            dccUser = null;
+            rlpayUser = null;
 
             // For now, we'll return fake data to simulate a vaild login
 ////            do
 ////            {
-////                dccClient = (APIClient)userIter.next();
+////                rlClient = (APIClient)userIter.next();
 ////
-////                if (client.getClientUID().equals (dccClient.getUid()))
+////                if (client.getClientUID().equals (rlClient.getUid()))
 ////                {
-////                    if (client.getDeviceId().equals (dccClient.getDeviceId()))
+////                    if (client.getDeviceId().equals (rlClient.getDeviceId()))
 ////                    {
-////                        if (password.equals (dccClient.getPassword()))
+////                        if (password.equals (rlClient.getPassword()))
 ////                        {
 ////                            client.setAuthToken (Util.getGUID()); // Client will use this to authenticate for next request
 ////                            result = true;
@@ -146,20 +146,20 @@ public class AuthenticationSvcImpl implements IAuthenticationSvc
     {
         boolean result = false;
         Iterator userIter = clientList.iterator();
-        APIClient dccclient;
+        APIClient rlclient;
 
         // For now, we'll return fake data to simulate a vaild login
         do
         {
-            dccclient = (APIClient)userIter.next();
+            rlclient = (APIClient)userIter.next();
 
-            if (user.getUserName().equals (dccclient.getUid()))
+            if (user.getUserName().equals (rlclient.getUid()))
             {
-                if (password.equals (dccclient.getSecretKey()))
+                if (password.equals (rlclient.getSecretKey()))
                 {
-                    if (user.getAccountNum().equals (dccclient.getDeviceId()))
+                    if (user.getAccountNum().equals (rlclient.getDeviceId()))
                     {
-                        if (email.equals (dccclient.getEmail()))
+                        if (email.equals (rlclient.getEmail()))
                         {
                             result = true;
                         }
@@ -192,7 +192,7 @@ public class AuthenticationSvcImpl implements IAuthenticationSvc
     {
         IClient lClient = params.getClient();
         String token;
-        User dccUser = new User();
+        User rlpayUser = new User();
 
         try
         {
@@ -218,30 +218,30 @@ public class AuthenticationSvcImpl implements IAuthenticationSvc
             {
                 lClient = new Client();
                 String temppga = params.getCfg().getPgaClientKey();
-                String tempdcc = params.getCfg().getClientKey();
+                String temprlpay = params.getCfg().getClientKey();
 
-                dccUser.getId().setUid ("portaluser");
-                dccUser.getId().setDeviceid (client.getDeviceId());
+                rlpayUser.getId().setUid ("portaluser");
+                rlpayUser.getId().setDeviceid (client.getDeviceId());
 
-                dccUser = (User) apiUserSvc.find (dccUser);
+                rlpayUser = (User) apiUserSvc.find (rlpayUser);
 
-                if (dccUser == null)
+                if (rlpayUser == null)
                 {
-                    dccUser = new User();
+                    rlpayUser = new User();
 
-                    dccUser.getId().setUid ("portaltest");
-                    dccUser.getId().setDeviceid (client.getDeviceId());
+                    rlpayUser.getId().setUid ("portaltest");
+                    rlpayUser.getId().setDeviceid (client.getDeviceId());
 
-                    dccUser = (User) apiUserSvc.find (dccUser);
+                    rlpayUser = (User) apiUserSvc.find (rlpayUser);
                 }
                 // else do nothing
 
                 // Check for customer key
                 if ((client.getDeviceId().equals (temppga))
-                 || (client.getDeviceId().equals (tempdcc)))
+                 || (client.getDeviceId().equals (temprlpay)))
                 {
                     User glbUser = new User();
-                    glbUser.getId().setIdUser (dccUser.getId().getIdUser());
+                    glbUser.getId().setIdUser (rlpayUser.getId().getIdUser());
                     Logger.setUser (glbUser);
                     lClient.setAuthToken (Util.getGUID());
                     lClient.setDeviceId (client.getDeviceId());

@@ -116,7 +116,7 @@ public class APIUserAccessSvcImpl extends HibernateDAOSvc implements IAPIUserAcc
             catch (Exception e)
             {
                 user = null;
-                Logger.log (0, APIUserAccessSvcImpl.class, e);
+                Logger.log (Logger.EXCEPTION, APIUserAccessSvcImpl.class, e);
             }
         }
         else
@@ -164,7 +164,7 @@ public class APIUserAccessSvcImpl extends HibernateDAOSvc implements IAPIUserAcc
                     {
                         try
                         {
-                            Logger.log (0, APIUserAccessSvcImpl.class, e);
+                            Logger.log (Logger.EXCEPTION, APIUserAccessSvcImpl.class, e);
                             transaction.rollback();
                         }
                         catch (Exception ex)
@@ -225,7 +225,7 @@ public class APIUserAccessSvcImpl extends HibernateDAOSvc implements IAPIUserAcc
                     {
                         try
                         {
-                            Logger.log (0, APIUserAccessSvcImpl.class, e);
+                            Logger.log (Logger.EXCEPTION, APIUserAccessSvcImpl.class, e);
                             transaction.rollback();
                         }
                         catch (Exception ex)
@@ -278,7 +278,7 @@ public class APIUserAccessSvcImpl extends HibernateDAOSvc implements IAPIUserAcc
             }
             catch (Exception e)
             {
-                Logger.log (0, APIUserAccessSvcImpl.class, e);
+                Logger.log (Logger.EXCEPTION, APIUserAccessSvcImpl.class, e);
             }
         }
         else
@@ -346,7 +346,7 @@ public class APIUserAccessSvcImpl extends HibernateDAOSvc implements IAPIUserAcc
                 }
                 catch (Exception e)
                 {
-                    Logger.log (0, APIUserAccessSvcImpl.class, e);
+                    Logger.log (Logger.EXCEPTION, APIUserAccessSvcImpl.class, e);
                 }
             }
             else

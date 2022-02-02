@@ -73,7 +73,7 @@ public class Authorization implements Serializable
     }
 
 ////    @ManyToMany(fetch=FetchType.EAGER)
-////    @JoinTable(name="user_has_authorization", catalog="dccapi", joinColumns = {
+////    @JoinTable(name="user_has_authorization", catalog="rlpay", joinColumns = {
 ////        @JoinColumn(name="Authorization_idAuthorization", nullable=false, updatable=false),
 ////        @JoinColumn(name="Authorization_method", nullable=false, updatable=false) }, inverseJoinColumns = {
 ////        @JoinColumn(name="User_idUser", nullable=false, updatable=false) })

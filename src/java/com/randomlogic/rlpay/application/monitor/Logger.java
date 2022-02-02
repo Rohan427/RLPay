@@ -25,7 +25,7 @@ public class Logger
     public final static int EXCEPTION = 5;
     public final static int MOD = 10;
 
-    public final static int GLB_DEBUG = ERROR;
+    public final static int GLB_DEBUG = DEBUG;
 
     private static User user = new User();
 

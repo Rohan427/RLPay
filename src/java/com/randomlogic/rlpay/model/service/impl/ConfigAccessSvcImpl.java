@@ -86,7 +86,7 @@ public class ConfigAccessSvcImpl extends HibernateDAOSvc implements IConfigAcces
                         }
                         catch (Exception e)
                         {
-                            Logger.log (0, ConfigAccessSvcImpl.class, e);
+                            Logger.log (Logger.EXCEPTION, ConfigAccessSvcImpl.class, e);
                         }
                     }
                 }

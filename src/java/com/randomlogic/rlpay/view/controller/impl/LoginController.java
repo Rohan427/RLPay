@@ -175,7 +175,7 @@ public class LoginController implements Serializable
     public void register()
     {
         IPaymentSvc paymentSvc = new AnetSvcImpl();
-        IAuthenticationSvc dccSvc = new AuthenticationSvcImpl();
+        IAuthenticationSvc rlpaySvc = new AuthenticationSvcImpl();
         ICustomer customer;
         int environment;
         String url;
@@ -191,7 +191,7 @@ public class LoginController implements Serializable
         params.getRequest().getSession().setAttribute ("registered", "new");
 
         // Verify login with implementor system
-        params.setUser ((IUser)dccSvc.register (params.getUser(), password, email));
+        params.setUser ((IUser)rlpaySvc.register (params.getUser(), password, email));
 
         if (params.getUser().getAccountNum().equals ("0"))
         {
@@ -238,7 +238,7 @@ public class LoginController implements Serializable
     {
         TransactionRecord transaction = new TransactionRecord();
         IPaymentSvc paymentSvc = new AnetSvcImpl();
-        IAuthenticationSvc dccSvc = new AuthenticationSvcImpl();
+        IAuthenticationSvc rlpaySvc = new AuthenticationSvcImpl();
         ICustomer customer;
         String url;
 
@@ -253,7 +253,7 @@ public class LoginController implements Serializable
         params.getRequest().getSession().setAttribute ("registered", "invalid");
 
         // Verify login with implementor system
-        params.setUser ((IUser)dccSvc.register (params.getUser(), password, email));
+        params.setUser ((IUser)rlpaySvc.register (params.getUser(), password, email));
 
         transaction.getRequest().setUser (params.getUser());
         transaction.getRequest().setClient (params.getClient());
@@ -363,7 +363,7 @@ public class LoginController implements Serializable
         }
         catch (ServletException | IOException ex)
         {
-            Logger.log (0, LoginController.class, ex, "LoginController: Exception.\n");
+            Logger.log (Logger.EXCEPTION, LoginController.class, ex, "LoginController: Exception.\n");
 
             if (params.getError() != null)
             {
@@ -385,7 +385,7 @@ public class LoginController implements Serializable
                 }
                 catch (ServletException | IOException ex1)
                 {
-                    Logger.log (0, LoginController.class, ex1);
+                    Logger.log (Logger.EXCEPTION, LoginController.class, ex1);
                 }
             }
         }

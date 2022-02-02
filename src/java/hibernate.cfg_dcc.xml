@@ -5,9 +5,9 @@
 <hibernate-configuration>
   <session-factory>
     <!-- MySQL Database Connection Settings>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/dccapi?autoReconnect=true&amp;zeroDateTimeBehavior=ConvertToNull</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/rlapi?autoReconnect=true&amp;zeroDateTimeBehavior=ConvertToNull</property>
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">D@v!dcc00kc5p@p!</property>
+        <property name="hibernate.connection.password">r1p@ym3nt@p!</property>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property -->
 
@@ -32,7 +32,7 @@
         <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
         <property name="hibernate.dialect">org.hibernate.dialect.Oracle12cDialect</property>
 
-    <!-- property name="hibernate.connection.datasource">jdbc/dccapi</property>
+    <!-- property name="hibernate.connection.datasource">jdbc/rlapi</property>
         <property name="hibernate.jndi.class">weblogic.jndi.WLInitialContextFactory</property -->
 
     <!-- Enable Hibernate's automatic session context management -->

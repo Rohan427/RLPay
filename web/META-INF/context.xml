@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context path="/">
-  <!-- ResourceLink global="jdbc/dccapi"
-                  name="jdbc/dccapi"
+  <!-- ResourceLink global="jdbc/rlapi"
+                  name="jdbc/rlapi"
                   type="javax.sql.DataSource"
     / -->
 </Context>

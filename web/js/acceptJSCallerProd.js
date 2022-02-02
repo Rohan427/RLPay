@@ -75,18 +75,18 @@ function messageFunc (msg)
                 if (portalMode !== "dev")
                 {
                     data = {
-                            "dcc_accountid" : myAccount,
-                            "dcc_amount" : myAmt,
-                            "dcc_authcode" : "",
-                            "dcc_clientip" : "0.0.0.0",
-                            "dcc_customerid" : myAccount,
-                            "dcc_errorcode" : errorCode,
-                            "dcc_errormsg" : errorMsg,
-                            "dcc_errorsource" : "MASKED",
-                            "dcc_errortype" : "MASKED",
-                            "dcc_logtext" : errorMsg,
-                            "dcc_transactionid" : transId,
-                            "dcc_users" : "MASKED"
+                            "accountid" : myAccount,
+                            "amount" : myAmt,
+                            "authcode" : "",
+                            "clientip" : "0.0.0.0",
+                            "customerid" : myAccount,
+                            "errorcode" : errorCode,
+                            "errormsg" : errorMsg,
+                            "errorsource" : "MASKED",
+                            "errortype" : "MASKED",
+                            "logtext" : errorMsg,
+                            "transactionid" : transId,
+                            "users" : "MASKED"
                            };
 
                     createLogEntry (data);
@@ -115,7 +115,7 @@ function parseLog (msg)
         refId = msg.getElementsByTagName ("guid")[0].childNodes[0].nodeValue;
         logList = msg.getElementsByTagName ("logList");
 
-        oldRefId = document.getElementById ("dcc_ref_id").value;
+        oldRefId = document.getElementById ("ref_id").value;
 
         if ((refId !== oldRefId ) || (errorCode === "1") || errorCode === "3")
         {
@@ -177,7 +177,7 @@ function getLogs (callback)
 {
     var account = null, beginDate = null, endDate = null;
 
-    account = document.getElementById ('dcc_accountnumber').value;
+    account = document.getElementById ('accountnumber').value;
 
     if (account !== null || account !== "")
     {

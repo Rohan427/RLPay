@@ -54,7 +54,7 @@ public abstract class HibernateDAOSvc implements IDAOService
                 }
                 catch (HibernateException ex)
                 {
-                    Logger.log (0, HibernateDAOSvc.class, ex);
+                    Logger.log (Logger.EXCEPTION, HibernateDAOSvc.class, ex);
                 }
             }
             // else do nothing
@@ -67,7 +67,7 @@ public abstract class HibernateDAOSvc implements IDAOService
             catch (HibernateException ex)
             {
                 // Log the exception.
-                Logger.log (0, HibernateDAOSvc.class, ex, "SEVERE: Initial Session creation failed: ");
+                Logger.log (Logger.EXCEPTION, HibernateDAOSvc.class, ex, "SEVERE: Initial Session creation failed: ");
                 throw new ExceptionInInitializerError (ex);
             }
         }
@@ -89,7 +89,7 @@ public abstract class HibernateDAOSvc implements IDAOService
         catch (HibernateException ex)
         {
             // Make sure you log the exception, as it might be swallowed
-            Logger.log (0, HibernateDAOSvc.class, ex, "SEVERE: Initial SessionFactory creation failed: ");
+            Logger.log (Logger.EXCEPTION, HibernateDAOSvc.class, ex, "SEVERE: Initial SessionFactory creation failed: ");
         }
 
         return lFactory;
