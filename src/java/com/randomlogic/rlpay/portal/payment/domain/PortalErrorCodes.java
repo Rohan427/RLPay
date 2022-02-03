@@ -74,4 +74,29 @@ public class PortalErrorCodes
     public static final String INTERNAL_ERROR       = "INTERNAL";
     public static final String ANET_CONN_ERROR      = "ANETCONN";
     public static final String ANET_REPORT_ERROR    = "ANETRPT";
+
+    // Portal methods
+    public static final String METH_PAYMENT     = "payment";
+    public static final String METH_REGISTER    = "register";
+    public static final String METH_LOGIN       = "login";
+    public static final String METH_MANAGE      = "manage";
+    public static final String METH_LOG         = "log";
+    public static final String METH_DELPROF     = "deleteprofile";
+    public static final String METH_REPORT      = "report";
+    public static final String METH_TEST        = "test";
+
+    // Portal commands
+    public static final String CMD_PAYMENT      = "payment";
+    public static final String CMD_NONCEPAY     = "noncepayment";
+    public static final String CMD_DETAILS      = "details";
+    public static final String CMD_NONE         = "none";
+    public static final String CMD_VERIFY       = "verify";
+    public static final String CMD_LOAD         = "load";
+    public static final String CMD_DELETE       = "delete";
+
+    //portal modes
+    public static final String MODE_PROFILE     = "profile";
+    public static final String MODE_RECORDS     = "records";
+    public static final String MODE_PAYMENT     = "payment";
+
 }

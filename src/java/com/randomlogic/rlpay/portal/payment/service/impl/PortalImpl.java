@@ -350,6 +350,7 @@ public class PortalImpl
 
         if (request.getClientData().getGuid() != null)
         {
+            transaction.setRefId (request.getClientData().getGuid());
             transaction.getRequest().setCustomer (new CustomerProfile());
             transaction.getRequest().getCustomer().setCustomerId (request.getClientData().getCustAccount());
             transaction.getRequest().getCustomer().setEmail (request.getClientData().getEmail());
@@ -361,8 +362,8 @@ public class PortalImpl
             }
             else
             {
-                transaction.setMode ("profile");
-                transaction.setCommand ("load");
+                transaction.setMode (MODE_PROFILE);
+                transaction.setCommand (CMD_LOAD);
 
                 transaction.setRefId (request.getClientData().getGuid());
                 transaction = methods.requestTransaction (transaction, params);
@@ -376,7 +377,7 @@ public class PortalImpl
 
                     /*
                     * Do to limitations on Phase I implementation, we can't get the
-                    * item list for reconciliation. So, we need to grade some data
+                    * item list for reconciliation. So, we need to grab some data
                     * from the first item in the list and pop it into another API
                     * field.
                     */
@@ -423,8 +424,8 @@ public class PortalImpl
 
                     transaction.getRequest().setPaymentSettings (request.getClientData().getHostedPageSettings());
 
-                    transaction.setMode ("payment");
-                    transaction.setCommand ("payment");
+                    transaction.setMode (MODE_PAYMENT);
+                    transaction.setCommand (CMD_PAYMENT);
                     transaction.getRequest().setTransactionType (IPaymentSvc.TTYPE_AUTH_CAPTURE);
 
                     // Send the payment transaction request
@@ -499,8 +500,8 @@ public class PortalImpl
 ////       {
 ////            if (request.getGuid() != null)
 ////            {
-////                transaction.setMode ("profile");
-////                transaction.setCommand ("verify");
+////                transaction.setMode (MODE_PROFILE);
+////                transaction.setCommand (CMD_VERIFY);
 ////                transaction.getRequest().setClient (client);
 ////
 ////                transaction.setRefId (request.getGuid());
@@ -582,8 +583,8 @@ public class PortalImpl
             transaction.getRequest().getCustomer().setCustomerId (request.getCustAccount());
             transaction.getRequest().getCustomer().setEmail (request.getEmail());
             transaction.getRequest().setClient (client);
-            transaction.setMode ("profile");
-            transaction.setCommand ("load");
+            transaction.setMode (MODE_PROFILE);
+            transaction.setCommand (CMD_LOAD);
             transaction.setRefId (request.getGuid());
 
             transaction = methods.requestTransaction (transaction, params);
@@ -598,8 +599,8 @@ public class PortalImpl
                     && transaction.getRefId().equals (request.getGuid())
                    )
                 {
-                    transaction.setMode ("profile");
-                    transaction.setCommand ("delete");
+                    transaction.setMode (MODE_PROFILE);
+                    transaction.setCommand (CMD_DELETE);
                     transaction = methods.requestTransaction (transaction, params);
 
                     if (transaction.getRefId().equals (request.getGuid())
@@ -662,7 +663,7 @@ public class PortalImpl
         Logs log = new Logs();
 
         log.setErrorSource (this.getClass().toString());
-        log.setMethod ("report");
+        log.setMethod (METH_REPORT);
         log.setCommand (request.getCommand());
 
         client = request.getClient();
@@ -672,7 +673,7 @@ public class PortalImpl
         {
             transaction.getRequest().setReportReq (request);
 
-            transaction.setMode ("records");
+            transaction.setMode (MODE_RECORDS);
             transaction.setCommand (request.getCommand());
 
             transaction = methods.requestTransaction (transaction, params);
@@ -758,23 +759,23 @@ public class PortalImpl
         Logs log = new Logs();
 
         log.setErrorSource (this.getClass().toString());
-        log.setMethod ("payment");
-        log.setCommand ("noncepayment");
+        log.setMethod (METH_PAYMENT);
+        log.setCommand (CMD_NONCEPAY);
 
         // Clear session client data
         params.setClient (null);
 
         transaction.setRefId (request.getClientData().getGuid());
-        transaction.setMode ("profile");
-        transaction.setCommand ("verify");
+        transaction.setMode (MODE_PROFILE);
+        transaction.setCommand (CMD_VERIFY);
 
         transaction = methods.requestTransaction (transaction, params);
         client = (Client)transaction.getRequest().getClient();
 
         if (transaction.getResponse().getErrorCode() == TRANSACTION_SUCCESS)
         {
-            transaction.setMode ("payment");
-            transaction.setCommand ("noncepayment");
+            transaction.setMode (METH_PAYMENT);
+            transaction.setCommand (CMD_NONCEPAY);
             transaction.getRequest().setTransactionType (IPaymentSvc.TTYPE_AUTH_CAPTURE);
 
             try
@@ -872,6 +873,7 @@ public class PortalImpl
                 log.setAmount (request.getAccount().getAmount());
                 log.setErrorType (TRANS_REQUEST);
                 log.setLogText (TRANS_AMT_INVALID);
+                log.setLogDate (Calendar.getInstance().getTime());
 
                 Logger.log (Logger.EXCEPTION, PortalImpl.class, log, true);
             }

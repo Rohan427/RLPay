@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import com.randomlogic.rlpay.model.domain.payment.Client;
+import static com.randomlogic.rlpay.portal.payment.domain.PortalErrorCodes.CMD_NONE;
 
 /**
  *
@@ -16,7 +17,7 @@ public class ReportRequest implements Serializable
 {
     private String guid = null;
     private Client client = new Client();
-    private String command = "none";
+    private String command = CMD_NONE;
     private String beginDate;
     private String endDate;
     private String transactionId;

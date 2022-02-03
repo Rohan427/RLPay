@@ -11,12 +11,12 @@
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property -->
 
-    <!-- MySQL Database Connection Settings -->
+    <!-- MySQL Database Connection Settings >
         <property name="hibernate.connection.url">jdbc:mysql://randomlogic.net:3306/rlapi?autoReconnect=true&amp;zeroDateTimeBehavior=ConvertToNull</property>
         <property name="hibernate.connection.username">rlapi</property>
         <property name="hibernate.connection.password">R@nd0ml0g!crlapi</property>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property -->
 
     <!-- MS SQL Production Database connection settings >
         <property name="hibernate.connection.url">jdbc:sqlserver://weblogic.database.windows.net:1433;databaseName=cred;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;</property>

@@ -220,6 +220,7 @@ public class LogsAccessSvcImpl extends HibernateDAOSvc implements ILogsAccessSvc
                     while (iterator.hasNext() && result)
                     {
                         newLog = (Logs)iterator.next();
+                        newLog.setIdLogs (null);
                         session.save (newLog);
                     }
 

@@ -56,9 +56,8 @@ import net.authorize.api.controller.GetTransactionDetailsController;
 import net.authorize.api.controller.base.ApiOperationBase;
 import com.randomlogic.rlpay.portal.payment.domain.LineItem;
 import com.randomlogic.rlpay.portal.payment.domain.Order;
-import static com.randomlogic.rlpay.portal.payment.domain.PortalErrorCodes.ANET_REPORT_FAILED;
-import static com.randomlogic.rlpay.portal.payment.domain.PortalErrorCodes.REPORT_DETAILS_FAIL;
-import static com.randomlogic.rlpay.portal.payment.domain.PortalErrorCodes.TRANSACTION_SUCCESS;
+import static com.randomlogic.rlpay.portal.payment.domain.PortalErrorCodes.*;
+import java.util.*;
 
 /**
  *
@@ -101,8 +100,8 @@ public class ReportAPI
         Collection<ITransactionDetail> transactionList = new ArrayList<ITransactionDetail>();
         Logs log = new Logs();
 
-        log.setMethod ("report");
-        log.setCommand ("details");
+        log.setMethod (METH_REPORT);
+        log.setCommand (CMD_DETAILS);
         log.setErrorSource (this.getClass().toString());
 
         ApiOperationBase.setMerchantAuthentication (payParms.getEnvironment());
@@ -265,6 +264,7 @@ public class ReportAPI
         log.setErrorCode (report.getMessageCode());
         log.setErrorMsg (report.getErrorMessage());
         log.setLogText (report.getDescription());
+        log.setLogDate (Calendar.getInstance().getTime());
 
         Logger.log (Logger.ERROR, this.getClass(), log, true);
 

@@ -41,6 +41,7 @@ import net.authorize.api.controller.GetHostedPaymentPageController;
 import static com.randomlogic.rlpay.portal.payment.domain.PortalErrorCodes.*;
 import com.randomlogic.rlpay.portal.payment.domain.TransRequest;
 import com.randomlogic.rlpay.portal.payment.domain.TransactionRecord;
+import java.util.Calendar;
 
 /**
  *
@@ -68,8 +69,8 @@ public class PaymentAPI
         Logs log = new Logs();
 
         log.setErrorSource (this.getClass().toString());
-        log.setMethod ("payment");
-        log.setCommand ("payment");
+        log.setMethod (METH_PAYMENT);
+        log.setCommand (CMD_PAYMENT);
 
         // Set the request to operate in either the sandbox or production environment
         apiRequest.setMerchantAuthentication (payParms.getEnvironment());
@@ -211,21 +212,29 @@ public class PaymentAPI
             else
             {
                 transaction.getResponse().setErrorCode (ANET_PAYMENT_FAILED);
-                transaction.getResponse ().setErrorMessage ("Payment Processor failed to send response");
+                transaction.getResponse().setErrorMessage ("Payment Processor failed to send response");
             }
         }
 
         log.setTransactionId (transaction.getResponse().getTransactionId());
         log.setAuthCode (transaction.getResponse().getAuthCode());
+
+        if (log.getAuthCode() == null)
+        {
+            log.setAuthCode ("none");
+        }
+        // else do nothing
+        
         log.setAmount ("" + transaction.getRequest().getAmount());
         log.setCustomerId (transaction.getRequest().getCustomer().getCustomerId());
         log.setErrorCode ("" + transaction.getResponse().getErrorCode());
         log.setErrorMsg (transaction.getResponse().getErrorMessage());
         log.setErrorType (ANET_TRANS_ERROR);
         log.setLogText (transaction.getResponse().getDescription());
-        log.setGuid (transaction.getRequest().getCustomer().getRefId());
+        log.setGuid (transaction.getRefId());
+        log.setLogDate (Calendar.getInstance().getTime());
 
-        Logger.log (Logger.ERROR, this.getClass(), log, true);
+        Logger.log (Logger.INFO, this.getClass(), log, true);
 
         return transaction;
     }

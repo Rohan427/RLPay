@@ -4,6 +4,7 @@
 package com.randomlogic.rlpay.view.manager;
 
 import com.randomlogic.rlpay.application.monitor.ErrorBean;
+import com.randomlogic.rlpay.application.monitor.LogData;
 import com.randomlogic.rlpay.application.monitor.Logger;
 import java.io.IOException;
 import java.text.ParseException;
@@ -116,6 +117,7 @@ public class LogManager extends HttpServlet
         ILogs searchLog;
         Collection<Logs> logList;
         resultPage = "/admin/logs.jsp";
+        LogData logData = new LogData();
 
         // For input type datetime-local which has a "T" between date and time
         if (beginParm != null)
@@ -157,20 +159,20 @@ public class LogManager extends HttpServlet
         }
         // else do nothing
 
-        searchLog = new Logs (0,
-                              0,
-                              "",
-                              params.getRequest().getParameter ("transId"),
-                              "",//String authCode,
-                              "",//String amount,
-                              params.getRequest().getParameter ("account"),//String customerId,
-                              params.getRequest().getParameter ("errorCode"),//String errorCode,
-                              "",//String errorType,
-                              "",//String errorMsg,
-                              "",//String logText,
-                              "",//String errorSource,
-                              Calendar.getInstance().getTime()
-                             );
+        logData.setUsers (1);
+        logData.setClientip ("");
+        logData.setTransactionId (params.getRequest().getParameter ("transId"));
+        logData.setAuthCode ("");
+        logData.setAmount ("");
+        logData.setCustomerId (params.getRequest().getParameter ("account"));
+        logData.setErrorCode (params.getRequest().getParameter ("errorCode"));
+        logData.setErrorType ("");
+        logData.setErrorMsg ("");
+        logData.setLogText ("");
+        logData.setErrorSource ("");
+        logData.setLogDate (Calendar.getInstance().getTime());
+
+        searchLog = new Logs (logData);
 
         logList = logAccess.searchLogs (searchLog, begin, end);
         params.getRequest().getSession().setAttribute ("logList", logList);

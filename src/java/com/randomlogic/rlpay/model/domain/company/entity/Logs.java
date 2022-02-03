@@ -4,6 +4,7 @@
 package com.randomlogic.rlpay.model.domain.company.entity;
 // Generated Jan 7, 2019 10:43:39 AM by Hibernate Tools 4.3.1
 
+import com.randomlogic.rlpay.application.monitor.LogData;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -33,11 +34,11 @@ import com.randomlogic.rlpay.model.domain.interfaces.ILogs;
 )
 public class Logs implements ILogs, Serializable
 {
-     @GeneratedValue (strategy = GenerationType.AUTO)
+     @GeneratedValue (strategy = GenerationType.IDENTITY)
      @Basic (optional = false)
      @Column (name = "idLogs", nullable = false)
      @Id
-     private int idLogs;
+     private Integer idLogs = null;
 
      @Column (name = "users", nullable = false)
      private int users = 2;
@@ -97,12 +98,32 @@ public class Logs implements ILogs, Serializable
         this.idLogs = idLogs;
     }
 
-    public Logs (int idLogs, String transactionId, String customerId, Date logDate)
+    public Logs (Integer idLogs, String transactionId, String customerId, Date logDate)
     {
         this.idLogs = idLogs;
         this.transactionId = transactionId;
         this.customerId = customerId;
         this.logDate = logDate;
+    }
+
+    public Logs (LogData log)
+    {
+        this.users = log.getUsers();
+        this.clientip = log.getClientip();
+        this.guid = log.getGuid();
+        this.command = log.getCommand();
+        this.method = log.getMethod();
+        this.transactionId = log.getTransactionId();
+        this.batchId = log.getBatchId();
+        this.authCode = log.getAuthCode();
+        this.amount = log.getAmount();
+        this.customerId = log.getCustomerId();
+        this.errorCode = log.getErrorCode();
+        this.errorType = log.getErrorType();
+        this.errorMsg = log.getErrorMsg();
+        this.logText = log.getLogText();
+        this.errorSource = log.getErrorSource();
+        this.logDate = log.getLogDate();
     }
 
     public Logs (int idLogs,
@@ -129,7 +150,6 @@ public class Logs implements ILogs, Serializable
        this.customerId = customerId;
        this.errorCode = errorCode;
        this.errorType = errorType;
-       this.logDate = logDate;
        this.errorMsg = errorMsg;
        this.logText = logText;
        this.errorSource = errorSource;
@@ -401,13 +421,13 @@ public class Logs implements ILogs, Serializable
     }
 
     @Override
-    public int getIdLogs()
+    public Integer getIdLogs()
     {
         return this.idLogs;
     }
 
     @Override
-    public void setIdLogs (int idLogs)
+    public void setIdLogs (Integer idLogs)
     {
         this.idLogs = idLogs;
     }

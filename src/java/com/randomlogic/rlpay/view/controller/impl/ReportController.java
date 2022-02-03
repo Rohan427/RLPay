@@ -23,11 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import com.randomlogic.rlpay.portal.payment.service.impl.PortalMethodImpl;
 import com.randomlogic.rlpay.portal.payment.domain.ConfigBean;
-import static com.randomlogic.rlpay.portal.payment.domain.PortalErrorCodes.TRANSACTION_GUID_ERR;
-import static com.randomlogic.rlpay.portal.payment.domain.PortalErrorCodes.TRANSACTION_NOGUID;
-import static com.randomlogic.rlpay.portal.payment.domain.PortalErrorCodes.TRANSACTION_SUCCESS;
-import static com.randomlogic.rlpay.portal.payment.domain.PortalErrorCodes.TRANS_GUID_MISMATCH;
-import static com.randomlogic.rlpay.portal.payment.domain.PortalErrorCodes.TRANS_NO_GUID;
+import static com.randomlogic.rlpay.portal.payment.domain.PortalErrorCodes.*;
 import com.randomlogic.rlpay.portal.payment.domain.ReportRequest;
 import com.randomlogic.rlpay.portal.payment.domain.ReportResponse;
 import com.randomlogic.rlpay.portal.payment.domain.TransactionRecord;
@@ -114,7 +110,7 @@ public class ReportController implements Serializable
 
         request.setTransactionId (transId);
         request.setGuid (now);
-        request.setCommand ("details");
+        request.setCommand (CMD_DETAILS);
         request.setClient ((Client)params.getClient());
 
         response = report (request);
@@ -161,14 +157,14 @@ public class ReportController implements Serializable
         // else do nothing
 
         log.setErrorSource (this.getClass().toString());
-        log.setMethod ("report");
+        log.setMethod (METH_REPORT);
         log.setCommand (request.getCommand());
 
         if (request.getGuid() != null)
         {
             transaction.getRequest().setReportReq (request);
 
-            transaction.setMode ("records");
+            transaction.setMode (MODE_RECORDS);
             transaction.setCommand (request.getCommand());
 
             transaction = portal.requestTransaction (transaction, params);

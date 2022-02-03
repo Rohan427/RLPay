@@ -68,19 +68,19 @@ public interface ILogs extends IDomainObject
      */
     String getErrorType();
 
-    int getIdLogs ();
+    Integer getIdLogs();
 
-    Date getLogDate ();
+    Date getLogDate();
 
     /**
      * @return the logText
      */
-    String getLogText ();
+    String getLogText();
 
     /**
      * @return the transactionId
      */
-    String getTransactionId ();
+    String getTransactionId();
 
     /**
      * @param customerId the customerId to set
@@ -107,7 +107,7 @@ public interface ILogs extends IDomainObject
      */
     void setErrorType (String errorType);
 
-    void setIdLogs (int idLogs);
+    void setIdLogs (Integer idLogs);
 
     void setLogDate (Date logDate);
 

@@ -28,6 +28,7 @@ public class Logger
     public final static int GLB_DEBUG = DEBUG;
 
     private static User user = new User();
+    private static Collection<Logs> logs = new ArrayList<Logs>();
 
     private static String clientIP = "0.0.0.0";
 
@@ -60,18 +61,17 @@ public class Logger
 
     /**
      *
-     * @param level
-     * @param caller the value of caller
-     * @param newLog the value of newLog
-     * @param record the value of record
+     * @param level  the minimum level at which to report
+     * @param caller the reporting class
+     * @param newLog the data to report
+     * @param record the true - record in database, false do not record
      */
     public static synchronized void log (int level, Class caller, Logs newLog, boolean record)
     {
         java.util.Date utilDate = Calendar.getInstance().getTime();
         ILogsAccessSvc logSvc = new LogsAccessSvcImpl();
-        Collection<Logs> logs = new ArrayList<Logs>();
 
-        if (level == MOD || level >= INFO)
+        if (level == MOD || level <= INFO || level <= GLB_DEBUG)
         {
             if (!newLog.getClientip().equals ("0.0.0.0"))
             {
@@ -113,20 +113,20 @@ public class Logger
             }
             // else do nothing - record flag not set
 
-////        if (!logSvc.save (logs))
-////        {
-////            logSvc.close();
-////
-////            logSvc = new LogsAccessSvcImpl();
-////
-////            if (!logSvc.save (logs))
-////            {
-////                System.err.println ("<" + utilDate + "> Failed to create Logs DB entry: \n\t" + caller.toString());
-////            }
-////            //else do nothing
-////        }
+            if (!logSvc.save (logs))
+            {
+                logSvc.close();
+
+                logSvc = new LogsAccessSvcImpl();
+
+                if (!logSvc.save (logs))
+                {
+                    System.err.println ("<" + utilDate + "> Failed to create Logs DB entry: \n\t" + caller.toString());
+                }
+                //else do nothing
+            }
             // else do nothing
-        }
+        } // ENDIF: if (level == MOD || level >= INFO)
         // else do nothing
     }
 
@@ -140,7 +140,7 @@ public class Logger
     {
         java.util.Date utilDate = Calendar.getInstance().getTime();
 
-        if (level == EXCEPTION || level == MOD || level >= GLB_DEBUG)
+        if (level == EXCEPTION || level == MOD || level <= GLB_DEBUG)
         {
             System.err.println ("<" + utilDate + "> " + caller.toString() + " threw an exception:\n");
             System.err.println (e.getLocalizedMessage() + ":");

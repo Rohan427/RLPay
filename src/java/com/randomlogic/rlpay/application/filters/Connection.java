@@ -17,6 +17,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.randomlogic.rlpay.application.monitor.ErrorBean;
+import com.randomlogic.rlpay.application.monitor.LogData;
 import com.randomlogic.rlpay.application.monitor.Logger;
 import com.randomlogic.rlpay.application.util.ServletParams;
 import com.randomlogic.rlpay.model.domain.company.entity.Logs;
@@ -48,22 +49,24 @@ public class Connection implements Filter
     private void doBeforeProcessing (ServletRequest request, ServletResponse response)
             throws IOException, ServletException
     {
+        LogData logData = new LogData();
+
         Logger.debug (Connection.class, DEBUG, "\nConnection:DoBeforeProcessing()");
 
-        Logs log = new Logs (0,
-                             1,
-                             "0.0.0.0",
-                             "0",
-                             "none",
-                             "0.00",
-                             "0",
-                             "" + API_SERVER_CLIENT_CONN,
-                             "" + TRANS_REQUEST,
-                             "" + TRANS_CLIENT_OPTION,
-                             "" + TRANS_CLIENT_OPTION,
-                             Connection.class.toString(),
-                             Calendar.getInstance().getTime()
-                            );
+        logData.setUsers (1);
+        logData.setClientip ("0.0.0.0");
+        logData.setTransactionId ("0");
+        logData.setAuthCode ("none");
+        logData.setAmount ("0.00");
+        logData.setCustomerId ("0");
+        logData.setErrorCode ("" + API_SERVER_CLIENT_CONN);
+        logData.setErrorType (TRANS_REQUEST);
+        logData.setErrorMsg (TRANS_CLIENT_OPTION);
+        logData.setLogText (TRANS_CLIENT_OPTION);
+        logData.setErrorSource (Connection.class.toString());
+        logData.setLogDate (Calendar.getInstance().getTime());
+
+        Logs log = new Logs (logData);
 
         Logger.log (Logger.VERBOSE, Connection.class, log, false);
     }
@@ -102,6 +105,7 @@ public class Connection implements Filter
         String method = httpReq.getMethod();
         Throwable problem = null;
         boolean ssoResult = true;
+        LogData logData = new LogData();
 
         Logger.debug (Connection.class, DEBUG, "Connection:doFilter() method: " + method);
 
@@ -110,20 +114,20 @@ public class Connection implements Filter
 
         if (method.equals ("OPTIONS"))
         {
-            Logs log = new Logs (0,
-                                 1,
-                                 "0.0.0.0",
-                                 "0",
-                                 "none",
-                                 "0.00",
-                                 "0",
-                                 "" + API_SERVER_CLIENT_CONN,
-                                 "" + TRANS_REQUEST,
-                                 "" + TRANS_CLIENT_OPTION,
-                                 "" + TRANS_CLIENT_OPTION,
-                                 Connection.class.toString(),
-                                 Calendar.getInstance().getTime()
-                                );
+            logData.setUsers (1);
+            logData.setClientip ("0.0.0.0");
+            logData.setTransactionId ("0");
+            logData.setAuthCode ("none");
+            logData.setAmount ("0.00");
+            logData.setCustomerId ("0");
+            logData.setErrorCode ("" + API_SERVER_CLIENT_CONN);
+            logData.setErrorType (TRANS_REQUEST);
+            logData.setErrorMsg (TRANS_CLIENT_OPTION);
+            logData.setLogText (TRANS_CLIENT_OPTION);
+            logData.setErrorSource (Connection.class.toString());
+            logData.setLogDate (Calendar.getInstance().getTime());
+
+            Logs log = new Logs (logData);
 
             Logger.log (Logger.VERBOSE, Connection.class, log, false);
 
@@ -193,7 +197,7 @@ public class Connection implements Filter
         }
 
         // If there was a problem, we want to rethrow it if it is
-        // a known type, otherwise log it.
+        // a known type and always log it if possible.
         if (problem != null)
         {
             if (problem instanceof ServletException)
@@ -294,20 +298,22 @@ public class Connection implements Filter
     {
         String stackTrace = getStackTrace (t);
         String logTrace;
-        Logs log = new Logs (Logger.VERBOSE,
-                             1,
-                             "0.0.0.0",
-                             "0",
-                             "none",
-                             "0.00",
-                             "0",
-                             "" + API_SERVER_CLIENT_RESP,
-                             INTERNAL_ERROR,
-                             API_RESOURCE_ERROR,
-                             "",
-                             Connection.class.toString(),
-                             Calendar.getInstance().getTime()
-                            );
+        LogData logData = new LogData();
+
+        logData.setUsers (1);
+        logData.setClientip ("0.0.0.0");
+        logData.setTransactionId ("0");
+        logData.setAuthCode ("none");
+        logData.setAmount ("0.00");
+        logData.setCustomerId ("0");
+        logData.setErrorCode ("" + API_SERVER_CLIENT_RESP);
+        logData.setErrorType (INTERNAL_ERROR);
+        logData.setErrorMsg (API_RESOURCE_ERROR);
+        logData.setLogText ("");
+        logData.setErrorSource (Connection.class.toString());
+        logData.setLogDate (Calendar.getInstance().getTime());
+
+        Logs log = new Logs (logData);
 
         try
         {
@@ -321,6 +327,7 @@ public class Connection implements Filter
         if (stackTrace != null && !stackTrace.equals (""))
         {
             log.setLogText (logTrace);
+
             Logger.log (Logger.ERROR, Connection.class, log, true);
 
             try
@@ -366,7 +373,8 @@ public class Connection implements Filter
                 }
 
                 log.setLogText (logTrace);
-                Logger.log (Logger.ERROR, Connection.class, log, true);
+
+                Logger.log (Logger.EXCEPTION, Connection.class, log, true);
             }
         }
         else
@@ -374,6 +382,7 @@ public class Connection implements Filter
             log.setErrorCode ("" + API_SERVER_OUT_ERROR);
             log.setErrorMsg (API_RESOURCE_ERROR);
             log.setLogText (t.getLocalizedMessage());
+
             Logger.log (Logger.ERROR, Connection.class, log, true);
 
             try
