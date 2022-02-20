@@ -1,0 +1,28 @@
+        <div class="div_header">
+            <h1>Registration</h1>
+        </div>
+        <div class="res_div_header">
+                Registration result
+        </div>
+        <div class="res_div_main">
+            <div style="width: 500px">
+                <p>
+                    User <c:out value="${userBean.userName}" /> already registered.
+                </p>
+            </div>
+        </div>
+
+        <div class="res_div_main">
+            <form method="post" action="login.jsp">
+                <p>
+                    <input type="submit"
+                           value="Login"
+                           name="submit" 
+                    />
+                </p>
+            </form> 
+        </div>
+            
+        <p>
+            <small>&nbsp;</small>
+        </p>

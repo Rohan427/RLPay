@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+
+    <ui:insert name="header" >
+        <ui:include src="/common/header.xhtml" />
+    </ui:insert>
+
+    <h:body id="common">
+    <ui:insert name="content" >
+        <ui:include src="/common/top.xhtml" />
+        <ui:include src="/common/menu.xhtml" />
+
+<!-- ++++++++++++++++++++++ Page Content ++++++++++++++++++++++++ -->
+
+        <div class="div_header">
+            <h1>Error</h1>
+        </div>
+        <div class="res_div_header">
+                Error Data
+        </div>
+        <div class="res_div_main">
+            <p>
+                <h3>Caller:</h3> <h:outputText value="#{errorMsg.callingPage}" />
+            </p>
+            <p>
+                <h3>Operation:</h3> <h:outputText value="#{errorMsg.operation}" />
+            </p>
+            <p>
+                <h3>Error Type:</h3> <h:outputText value="#{errorMsg.errorStrings}" />
+            </p>
+            <p>
+                <h3>Description:</h3> <h:outputText value="#{errorMsg.errorMessage}" />
+            </p>
+            <p>
+                <h3>Stack Trace:</h3> <h:outputText value="#{errorMsg.stackTrace}" />
+            </p>
+            <p>
+                <h3>SQL Error:</h3> <h:outputText value="#{errorMsg.sqlError}" />
+            </p>
+            <p>
+                <h3>Exception:</h3> <h:outputText value="#{errorMsg.javaException}" />
+            </p>
+        </div>
+        <div class="res_div_main">
+            &nbsp;<br />
+        </div>
+        <p>
+            <small>&nbsp;</small>
+        </p>
+
+<!-- ++++++++++++++++++++++ Footer Begins Here ++++++++++++++++++++++++ -->
+
+        <ui:include src="/common/footer.xhtml" />
+    </ui:insert>
+
+<!-- +++++++++++++++++++++++ Footer Ends Here +++++++++++++++++++++++++ -->
+    </h:body>
+</html>

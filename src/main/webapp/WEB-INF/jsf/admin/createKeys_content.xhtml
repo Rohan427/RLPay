@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<!--      xmlns:p="http://primefaces.org/ui"
+-->
+    <ui:composition>
+        <div class="div_header">
+            <p id="top">
+                <h1>Key Generation</h1>
+            </p>
+        </div>
+
+        <div class="res_div_main">
+            <div style="width: 350px">
+                <form action="Security" method="post">
+                    <p class="form1">
+                        Key Length<input class="frightc"
+                                         type="text"
+                                         name="length"
+                                         title="Key length, required"
+                                         size="25"
+                                  />
+                    </p>
+                    <p class="form2">
+                        Algorithm<input class="frightc"
+                                        type="text"
+                                        name="algorithm"
+                                        title="Algorithm, required"
+                                        size="25"
+                                 />
+                    </p>
+
+                    <p>
+                        <input type="submit"
+                               value="Generate"
+                               name="Generate" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="reset"
+                               value="Reset"
+                               name="Reset" />
+                    </p>
+
+                    <input type="hidden" name="mode" value="keyGen" />
+
+                </form>
+            </div>
+        </div>
+
+<!-- ++++++++++++++++++++++ End Page Content ++++++++++++++++++++++++ -->
+
+    </ui:composition>
+</html>

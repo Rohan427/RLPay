@@ -1,0 +1,50 @@
+        <div class="div_header">
+            <h1>Registration</h1>
+        </div>
+        <div class="res_div_header">
+                Registration result
+        </div>
+        <div class="res_div_main">
+            <div style="width: 500px">
+<c:choose>
+    <c:when test="${userBean.accountNum ne '0'}" >
+                <p>
+                    User <c:out value="${userBean.userName}" /> registration successful.
+                </p>
+            </div>
+        </div>
+
+        <div class="res_div_main">
+            <form method="post" action="newProfile.jsp">
+                <p>
+                    <input type="submit"
+                           value="Continue"
+                           name="submit" 
+                    />
+                </p>
+            </form> 
+        </div>
+    </c:when>
+    <c:otherwise>
+                <p>
+                    User <c:out value="${userBean.userName}" /> registration FAILED!
+                </p>
+            </div>
+        </div>
+        
+         <div class="res_div_main">
+            <form action="login.jsp">
+                <p>
+                    <input type="submit"
+                           value="Register"
+                           name="submit" 
+                    />
+                </p>
+            </form> 
+        </div>
+    </c:otherwise>
+</c:choose>
+            
+        <p>
+            <small>&nbsp;</small>
+        </p>

@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<!--      xmlns:p="http://primefaces.org/ui"
+-->
+    <ui:composition>
+        <div class="div_header">
+            <p id="top">
+                <h1>Server Init</h1>
+            </p>
+        </div>
+
+        <div class="res_div_main">
+            <div style="width: 350px">
+                <form action="Security" method="post">
+                    <p class="form1">
+                        Algorithm<input class="frightc"
+                                        type="text"
+                                        name="algorithm"
+                                        title="Algorithm, required"
+                                        size="25"
+                                 />
+                    </p>
+                    <p class="form2">
+                        Key Length<input class="frightc"
+                                         type="text"
+                                         name="length"
+                                         title="Key length, required"
+                                         size="25"
+                                  />
+                    </p>
+                    <p class="form1">
+                        Encoded Key<input class="frightc"
+                                          type="password"
+                                          name="key"
+                                          title="Encoded Key, required"
+                                          size="25"
+                                   />
+                    </p>
+                    <p class="form1">
+                        Level<input class="frightc"
+                                    type="text"
+                                    name="keyLevel"
+                                    title="Encryption level, required"
+                                    size="25"
+                             />
+                    </p>
+
+                    <p>
+                        <input type="submit"
+                               value="Init"
+                               name="Init" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="reset"
+                               value="Reset"
+                               name="Reset" />
+                    </p>
+
+                    <input type="hidden" name="mode" value="initKey" />
+
+                </form>
+            </div>
+
+            <div style="width: 350px">
+                <form action="Security" method="post">
+                    <p class="form1">
+                        Server mode<input class="frightc"
+                                        type="text"
+                                        name="svrMode"
+                                        title="Server Mode. Set to one of: test, dev, or prod (default dev)"
+                                        size="25"
+                                 />
+                    </p>
+
+                    <p>
+                        <input type="submit"
+                               value="Set Mode"
+                               name="Set" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="reset"
+                               value="Reset"
+                               name="Reset" />
+                    </p>
+
+                    <input type="hidden" name="mode" value="setMode" />
+
+                </form>
+            </div>
+
+            <!-- div style="width: 350px">
+                <form action="Security" method="post">
+                    <p class="form1">
+                        Message<input class="frightc"
+                                        type="text"
+                                        name="message"
+                                        title="Message to encrypt, required"
+                                        size="45"
+                                 />
+                    </p>
+                    <p class="form1">
+                        Level<input class="frightc"
+                                    type="text"
+                                    name="keyLevel"
+                                    title="Encryption level, required"
+                                    size="25"
+                             />
+                    </p>
+
+                    <p>
+                        <input type="submit"
+                               value="Encrypt"
+                               name="Encrypt" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="reset"
+                               value="Reset"
+                               name="Reset" />
+                    </p>
+
+                    <input type="hidden" name="mode" value="testEcrypt" />
+
+                </form>
+            </div -->
+
+            <!-- div style="width: 1000px">
+                <form action="Security" method="post">
+                    <p class="form1">
+                        Cipher<input class="frightc"
+                                        type="text"
+                                        name="cipher"
+                                        title="Message to decrypt, required"
+                                        size="1000"
+                                 />
+                    </p>
+                    <p class="form1">
+                        Level<input class="frightc"
+                                    type="text"
+                                    name="keyLevel"
+                                    title="Encryption level, required"
+                                    size="25"
+                             />
+                    </p>
+
+                    <p>
+                        <input type="submit"
+                               value="Decrypt"
+                               name="Decrypt" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="reset"
+                               value="Reset"
+                               name="Reset" />
+                    </p>
+
+                    <input type="hidden" name="mode" value="testDecrypt" />
+
+                </form>
+            </div -->
+        </div>
+        
+<!-- ++++++++++++++++++++++ End Page Content ++++++++++++++++++++++++ -->
+
+    </ui:composition>
+</html>
