@@ -190,7 +190,7 @@ public class Config implements Serializable
      */
     public String getLiveApiLoginId()
     {
-        return liveApiLoginId;
+        return getConfig ("apiLoginId");
     }
 
     /**
@@ -289,7 +289,7 @@ public class Config implements Serializable
      */
     public String getTestApiLoginId()
     {
-        return testApiLoginId;
+        return getConfig ("testApiLoginId");
     }
 
     /**

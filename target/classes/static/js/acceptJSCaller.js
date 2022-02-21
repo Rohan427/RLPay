@@ -340,15 +340,15 @@ function acceptJSCaller (value)
         case 'url':
             if (portalMode === "test")
             {
-                returnValue = 'http://telgar.randomlogic.net:7101/RLPAY/Sandbox';
+                returnValue = 'http://randomlogic.net:8100/RLPAY/Sandbox';
             }
             else if (portalMode === "dev")
             {
-                returnValue = 'http://telgar.randomlogic.net:7101/RLPAY/Sandbox';
+                returnValue = 'http://randomlogic.net:8100/RLPAY/Sandbox';
             }
             else if (portalMode === "prod")
             {
-                returnValue = 'http://telgar.randomlogic.net:7101/RLPAY/Access';
+                returnValue = 'https://randomlogic.net:8102/RLPAY/Access';
             }
             else
             {

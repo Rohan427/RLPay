@@ -35,7 +35,7 @@ public class AuthenticationSvcImpl implements IAuthenticationSvc
 
     @Autowired (required = true)
     private ISSO sso;
-    
+
     private IAuthResponse ssoResponse;
 
     public void createTestUsers()
@@ -216,7 +216,7 @@ public class AuthenticationSvcImpl implements IAuthenticationSvc
             else
             {
                 lClient = new Client();
-                String temppga = params.getCfg().getPgaClientKey();
+                String temppga = params.getCfg().getClientKey();
                 String temprlpay = params.getCfg().getClientKey();
 
                 rlpayUser.getId().setUid ("portaluser");
@@ -232,8 +232,12 @@ public class AuthenticationSvcImpl implements IAuthenticationSvc
                     rlpayUser.getId().setDeviceid (client.getDeviceId());
 
                     rlpayUser = (Users) apiUsrSvc.find (rlpayUser);
+                    lClient.setClientUID ("portaltest");
                 }
-                // else do nothing
+                else
+                {
+                    lClient.setClientUID ("portaluser");
+                }
 
                 // Check for customer key
                 if ((client.getDeviceId().equals (temppga))
